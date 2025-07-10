@@ -1,0 +1,15 @@
+name: Send Webhook on Push
+
+on:
+  push:  # Triggers when someone pushes to this repo
+
+jobs:
+  send-webhook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Webhook to Flask
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{"pusher": {"name": "GitHubUser"}, "ref": "refs/heads/main"}' \
+          https://2a9913ed0b2e.ngrok-free.app/
